@@ -72,11 +72,11 @@ export const deletePhrase = async (req: Request, res: Response) => {
 export const randomPhrase = async (req: Request, res: Response) => {
   let phrase = await Phrase.findOne({
     order: [
-      Sequelize.fn('RANDOM')
+      Sequelize.fn('RANDOM')// Pega frase aleatoria
     ]
   });
   if(phrase) {
-    res.json({ phrase });
+    res.json({ phrase });// Retorna a frase encontrada
   } else {
     res.json({ error: 'Não há frases cadastradas!' });
   }
