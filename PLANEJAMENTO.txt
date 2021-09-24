@@ -6,3 +6,11 @@ OK - GET /frase/aleatoria - Pega frase aleatória
 OK - GET /frase/123 - Pegar informações de uma frase.
 OK - PUT /frase/123 - Atualizar informações de uma frase.
 OK - DELETE /frase/123 - Deletar uma frase.
+
+Processo de UPLOAD
+- O usuário seleciona um arquivo no campo.
+- O usuário efetua o envio do arquivo.
+- O servidor recebe esses bytes, junta tudo e forma novamente o arquivo.
+- O sistema decide o que fazer com o arquivo recém-recebido.
+- Manipula o arquivo 
+
