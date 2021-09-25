@@ -84,8 +84,22 @@ export const randomPhrase = async (req: Request, res: Response) => {
 }
 
 export const uploadFile = async(req: Request, res: Response) => {
-  console.log( req.file );
+  /*type UploadTypes = {
+    avatar: Express.Multer.File[],
+    gallery: Express.Multer.File[]
+  }
+  //console.log("ARQUIVO", req.file );
+  const files = req.files as {
+    [fieldname: string]: Express.Multer.File[]
+    //avatar: Express.Multer.File[],
+    //gallery: Express.Multer.File[]
+  };// Relaxa TS
 
+  console.log("AVATAR",  files.avatar);
+  console.log("GALLERY", files.gallery);*/
+  
+  console.log("FILE", req.file);
+  console.log("FILES", req.files);
 
   res.json({});
 }
