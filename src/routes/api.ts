@@ -3,42 +3,12 @@ import multer from 'multer';
 
 import * as ApiController from '../controllers/apiController';
 
-/*const upload = multer({// Fica Na memória
-  storage: multer.memoryStorage()
-});*/
-
-/*const storageConfig = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, './tmp');
-  },
-  filename: (req, file, cb) => {
-    let randomName = Math.floor(Math.random() * 9999999);
-    cb(null, `${randomName+Date.now()}.jpg`);
-  }
-});
 const upload = multer({
-<<<<<<< HEAD
   dest: './tmp',
   fileFilter: (req, file, cb) => {
     const allowed: string[] = ['image/jpg', 'image/jpeg', 'image/png'];
     cb(null, allowed.includes( file.mimetype ));
-=======
-  //dest: './tmp',
-  storage: storageConfig
-});*/
-const upload = multer({
-  dest: './tmp',
-  fileFilter: (req, file, cb) => {
-    const allowed: string[] = ['image/jpg', 'image/jpeg', 'image/png'];
     
-    //console.log("InfOrmações", file);
-    cb(null, allowed.includes( file.mimetype ));
-    /*if(allowed.includes( file.mimetype )) {
-      cb(null, true);
-    } else {
-      cb(null, false);
-    }*/
->>>>>>> ea0dd9a3d4e6cb8d760ee029bfed36cc827a780e
   },
   limits: { fieldSize: 2000000 }
 });
