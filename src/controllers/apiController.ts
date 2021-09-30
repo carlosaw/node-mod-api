@@ -1,5 +1,7 @@
+import { unlink } from 'fs/promises';//Gerencia arquivos
 import { Request, Response } from 'express';
 import { Sequelize } from 'sequelize';
+import sharp from 'sharp';
 import { Phrase } from '../models/Phrase';
 
 
@@ -79,13 +81,25 @@ export const randomPhrase = async (req: Request, res: Response) => {
     res.json({ phrase });// Retorna a frase encontrada
   } else {
     res.json({ error: 'Não há frases cadastradas!' });
-  }
-  
+  }  
 }
 
 export const uploadFile = async(req: Request, res: Response) => {
-  console.log( req.file );
+  
+  if(req.file) {
+    const filename = `${req.file.filename}.jpg`;// Nomeia arquivo
+    
+    await sharp(req.file.path)// Pega arquivo
+      .resize(300, 300)
+      .toFormat('jpeg')// Para jpeg
+      .toFile(`./public/media/${filename}`);// Salva
 
+    await unlink(req.file.path);// Deleta arquivo tmp
 
+    res.json({ image: `${filename}` });// Retorna nome do arquivo
+  } else {
+    res.status(400);
+    res.json({ error: 'Arquivo inválido' });
+  }
   res.json({});
 }
