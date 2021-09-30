@@ -96,6 +96,10 @@ export const uploadFile = async(req: Request, res: Response) => {
 
     await unlink(req.file.path);// Deleta arquivo tmp
 
+  
+  console.log("FILE", req.file);
+  console.log("FILES", req.files);
+
     res.json({ image: `${filename}` });// Retorna nome do arquivo
   } else {
     res.status(400);
