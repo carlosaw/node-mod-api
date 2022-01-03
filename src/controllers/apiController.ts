@@ -84,26 +84,21 @@ export const randomPhrase = async (req: Request, res: Response) => {
   }  
 }
 
-export const uploadFile = async(req: Request, res: Response) => {
+export const uploadFile = async (req: Request, res: Response) => {
   
-  if(req.file) {
-    const filename = `${req.file.filename}.jpg`;// Nomeia arquivo
-    
+  if(req.file) { 
+    const filename = `${req.file.filename}.jpg`; 
+
     await sharp(req.file.path)// Pega arquivo
       .resize(300, 300)
       .toFormat('jpeg')// Para jpeg
       .toFile(`./public/media/${filename}`);// Salva
 
-    await unlink(req.file.path);// Deleta arquivo tmp
-
-  
-  console.log("FILE", req.file);
-  console.log("FILES", req.files);
+    await unlink(req.file.path);// Deleta arquivo tmp  
 
     res.json({ image: `${filename}` });// Retorna nome do arquivo
   } else {
     res.status(400);
     res.json({ error: 'Arquivo inválido' });
   }
-  res.json({});
 }
